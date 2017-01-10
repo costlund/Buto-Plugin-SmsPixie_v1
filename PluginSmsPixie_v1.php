@@ -1,6 +1,6 @@
 <?php
 /**
- <h1>SMS using Pixie service.</h1>
+ <h1>SMS using Pixie service..</h1>
  */
 class PluginSmsPixie_v1{
   public static function send($data){
