@@ -1,0 +1,10 @@
+version: 1.1
+sys:
+  name: mercury
+  version: 2.0.2
+php:
+  version: 7.0.10
+dependencies:
+  -
+    plugin: 'wf/array'
+    version: 1.0
