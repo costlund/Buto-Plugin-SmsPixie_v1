@@ -1,7 +1,4 @@
 <?php
-/**
- <h1>SMS using Pixie service.</h1>
- */
 class PluginSmsPixie_v1{
   public static function send($data){
     wfPlugin::includeonce('wf/array');
@@ -43,10 +40,28 @@ class PluginSmsPixie_v1{
     $buffer = curl_exec($curl_handle);
     curl_close($curl_handle);
     if (empty($buffer)){
-      return null;
+      throw new Exception('PluginSmsPixie_v1 says: buffer is empty.');
     }
-    else{
-      return $buffer;
+    /**
+     * Response
+     */
+    $xml = simplexml_load_string($buffer, "SimpleXMLElement", LIBXML_NOCDATA);
+    $xml = json_encode($xml);
+    $xml = json_decode($xml,TRUE);
+    $xml = new PluginWfArray($xml);
+    $data->set('response', $xml->get());
+    /**
+     * Log
+     */
+    $settings = wfPlugin::getPluginSettings('sms/pixie_v1', true);
+    if($settings->get('data/log')){
+      $log = new PluginWfYml(wfGlobals::getAppDir().$settings->get('data/log'));
+      $log->set('log/'.date('ymdHis'), $data->get());
+      $log->save();
     }
+    /**
+     * 
+     */
+    return $data->get();
   }
 }
