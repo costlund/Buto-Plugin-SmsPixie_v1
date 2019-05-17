@@ -4,7 +4,7 @@ SMS using <a href="http://www.pixie.se" target="_blank">Pixie</a> service.
 
 
 ## PHP
-Alphanum sender can have max 11 characters, number senders max 15.
+Alphanum sender can have max 11 characters, number senders max 15. User cc param to send copies.
 ```
 $data = new PluginWfArray();
 $data->set('country', '46');
@@ -13,6 +13,7 @@ $data->set('sender', '_anything_');
 $data->set('pwd', '_pwd_');
 $data->set('to', '_phone_number_');
 $data->set('message', '_message_');
+$data->set('cc', array(''));
 wfPlugin::includeonce('sms/pixie_v1');
 $response = PluginSmsPixie_v1::send($data);
 $response = new PluginWfArray($response);

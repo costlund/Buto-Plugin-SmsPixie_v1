@@ -3,7 +3,7 @@ class PluginSmsPixie_v1{
   public static function send($data){
     wfPlugin::includeonce('wf/array');
     /**
-     * Defaults..
+     * Defaults
      */
     $default = new PluginWfArray();
     $default->set('country', '46');
@@ -12,6 +12,7 @@ class PluginSmsPixie_v1{
     $default->set('pwd', '_pwd');
     $default->set('to', '_to');
     $default->set('message', '_message');
+    $default->set('cc', array());
     /**
      * Merge defaults.
      */
@@ -19,15 +20,25 @@ class PluginSmsPixie_v1{
     /**
      * Handle number.
      */
-    if(substr($default->get('to'), 0, 1) == '0'){
-      $default->set('to', substr($default->get('to'), 1));
+    
+    $default->set('to', PluginSmsPixie_v1::phone_clean($default->get('to')));
+    /**
+     * receivers
+     */
+    $receivers = $default->get('country').$default->get('to');
+    foreach ($default->get('cc') as $key => $value) {
+      /**
+       * cc
+       */
+      $value = PluginSmsPixie_v1::phone_clean($value);
+      $receivers .= ','.$default->get('country').$value;
     }
     /**
      * Build url.
      */
     $url = 'http://smsserver.pixie.se/sendsms?account='.$default->get('account');
     $url .= '&pwd='.$default->get('pwd');
-    $url .= '&receivers='.$default->get('country').$default->get('to');
+    $url .= '&receivers='.$receivers;
     $url .= '&sender='.$default->get('sender');
     $url .= '&message='.$default->get('message');
     /**
@@ -63,5 +74,11 @@ class PluginSmsPixie_v1{
      * 
      */
     return $data->get();
+  }
+  public static function phone_clean($phone){
+    if(substr($phone, 0, 1) == '0'){
+      $phone = substr($phone, 1);
+    }
+    return $phone;
   }
 }
