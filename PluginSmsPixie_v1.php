@@ -51,7 +51,7 @@ class PluginSmsPixie_v1{
     $buffer = curl_exec($curl_handle);
     curl_close($curl_handle);
     if (empty($buffer)){
-      throw new Exception('PluginSmsPixie_v1 says: buffer is empty.');
+      throw new Exception('PluginSmsPixie_v1 says: Could not connect to server smsserver.pixie.se.');
     }
     /**
      * Response
