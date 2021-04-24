@@ -67,7 +67,8 @@ class PluginSmsPixie_v1{
     $settings = wfPlugin::getPluginSettings('sms/pixie_v1', true);
     if($settings->get('data/log')){
       $log = new PluginWfYml(wfGlobals::getAppDir().$settings->get('data/log'));
-      $log->set('log/'.date('ymdHis'), $data->get());
+      $data->set('date', date('Y-m-d H:i:s'));
+      $log->set('log/', $data->get());
       $log->save();
     }
     /**

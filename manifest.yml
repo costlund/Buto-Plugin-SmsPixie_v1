@@ -1,5 +1,9 @@
-version: 1.4.1
+version: 1.4.2
 history:
+  1.4.2:
+    date: '2021-04-24'
+    title: 'Log file'
+    description: 'Add date in log data and key is now not associate with a date value.'
   1.4.1:
     date: '2020-08-17'
     title: 'Exception message'
