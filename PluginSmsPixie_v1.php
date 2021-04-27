@@ -14,6 +14,12 @@ class PluginSmsPixie_v1{
     $default->set('message', '_message');
     $default->set('cc', array());
     /**
+     * If param country is set but empty we have to set it to a valid one.
+     */
+    if(!$data->get('country')){
+      $data->set('country', '46');
+    }
+    /**
      * Merge defaults.
      */
     $default = new PluginWfArray(array_merge($default->get(), $data->get()));

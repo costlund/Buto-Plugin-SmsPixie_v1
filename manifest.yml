@@ -1,5 +1,9 @@
-version: 1.4.2
+version: 1.4.3
 history:
+  1.4.3:
+    date: '2021-04-26'
+    title: 'Country'
+    description: 'If param country is set but empty we set it to a valid one (46).'
   1.4.2:
     date: '2021-04-24'
     title: 'Log file'
