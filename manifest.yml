@@ -1,5 +1,9 @@
-version: 1.4.3
+version: 1.5.0
 history:
+  1.5.0:
+    date: '2021-11-04'
+    title: 'Message'
+    description: 'Run method urlencode on message before send.'
   1.4.3:
     date: '2021-04-26'
     title: 'Country'
@@ -37,6 +41,7 @@ sys:
     version:
       - '1.0'
 php:
+  - '7.4'
   - '7.2'
 author: 'Claes Östlund'
 links: null

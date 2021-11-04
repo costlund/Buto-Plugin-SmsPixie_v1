@@ -46,7 +46,7 @@ class PluginSmsPixie_v1{
     $url .= '&pwd='.$default->get('pwd');
     $url .= '&receivers='.$receivers;
     $url .= '&sender='.$default->get('sender');
-    $url .= '&message='.$default->get('message');
+    $url .= '&message='.urlencode($default->get('message'));
     /**
      * Send.
      */
@@ -57,7 +57,7 @@ class PluginSmsPixie_v1{
     $buffer = curl_exec($curl_handle);
     curl_close($curl_handle);
     if (empty($buffer)){
-      throw new Exception('PluginSmsPixie_v1 says: Could not connect to server smsserver.pixie.se.');
+      throw new Exception("PluginSmsPixie_v1 says: Could not connect to server.");
     }
     /**
      * Response
