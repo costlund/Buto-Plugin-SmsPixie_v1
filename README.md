@@ -1,7 +1,5 @@
 # Buto-Plugin-SmsPixie_v1
-
 SMS using <a href="http://www.pixie.se" target="_blank">Pixie</a> service.
-
 
 ## PHP
 Alphanum sender can have max 11 characters, number senders max 15. User cc param to send copies.
@@ -32,3 +30,21 @@ plugin:
         log: '/../buto_data/theme/[theme]/pixie_log.yml'
 ```
 
+## Test widget
+One could test by using this widget.
+```
+type: widget
+settings:
+  role:
+    item:
+      - webmaster
+data:
+  plugin: 'sms/pixie_v1'
+  method: test
+  data:
+    account: _
+    pwd: _
+    sender: 'Anything'
+    to: 'mobile number'
+    message: 'Test message...'
+```

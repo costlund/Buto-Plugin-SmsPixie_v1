@@ -1,5 +1,9 @@
-version: 1.5.0
+version: 1.6.0
 history:
+  1.6.0:
+    date: '2021-11-04'
+    title: 'Url and widget'
+    description: 'Change url for security reason. Add test widget.'
   1.5.0:
     date: '2021-11-04'
     title: 'Message'

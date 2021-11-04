@@ -42,7 +42,7 @@ class PluginSmsPixie_v1{
     /**
      * Build url.
      */
-    $url = 'http://smsserver.pixie.se/sendsms?account='.$default->get('account');
+    $url = 'https://www.pixie.se/sendsms?account='.$default->get('account');
     $url .= '&pwd='.$default->get('pwd');
     $url .= '&receivers='.$receivers;
     $url .= '&sender='.$default->get('sender');
@@ -87,5 +87,23 @@ class PluginSmsPixie_v1{
       $phone = substr($phone, 1);
     }
     return $phone;
+  }
+  public function widget_test($data){
+    $print = new PluginWfArray();
+    /*
+     *
+     */
+    $data = new PluginWfArray($data);
+    $data = new PluginWfArray($data->get('data'));
+    $print->set('data', $data->get());
+    /*
+     *
+     */
+    $result = $this->send($data);
+    $print->set('result', $result);
+    /*
+     *
+     */
+    wfHelp::print($print);
   }
 }
