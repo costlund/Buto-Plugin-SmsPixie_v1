@@ -83,8 +83,8 @@ class PluginSmsPixie_v1{
     return $data->get();
   }
   public static function phone_clean($phone){
-    if(substr($phone, 0, 1) == '0'){
-      $phone = substr($phone, 1);
+    if(wfPhpfunc::substr($phone, 0, 1) == '0'){
+      $phone = wfPhpfunc::substr($phone, 1);
     }
     return $phone;
   }
